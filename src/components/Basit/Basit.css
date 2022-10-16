@@ -1,0 +1,29 @@
+.Basit-outer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .Basit-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid black; */
+
+
+.basit-login {
+    border: 2px solid black;
+    padding: 5%;
+    background-color: aquamarine;
+    width: 50rem;
+}
+
+.Basit-buttons {
+    display: grid;
+    /* justify-content: space-between; */
+    grid-template-columns: 60% 20% 20%;
+}
