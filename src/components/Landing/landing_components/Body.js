@@ -10,7 +10,7 @@ export default function Body() {
             </div>
 
             <Link to="Menu">
-                <button className="menu-button" onClick={() => { console.log("bsdk") }}>
+                <button className="menu-button" >
                     <div className="button-container">Menu</div>
                 </button>
             </Link>

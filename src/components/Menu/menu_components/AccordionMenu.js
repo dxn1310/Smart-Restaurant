@@ -10,38 +10,42 @@ import {
     Box,
 } from '@chakra-ui/react'
 
-export default function AccordionMenu({ Menu, types, order, setOrder }) {
+export default function AccordionMenu({ Menu, types, quantities, setQuantities }) {
 
 
 
     const decrement = (id, index) => {
-        console.log('decrement', id, index)
+        if (quantities[id][index] > 0) {
+            const a = quantities[id]
+            a[index]--
+            setQuantities(quantities => [
+                ...quantities.slice(0, id),
+                a,
+                ...quantities.slice(id + 1)
+            ])
+            console.log(quantities)
+        }
     }
     const increment = (id, index) => {
-        console.log('increment', id, index)
-        if (!order) {
-            const a = {}
-            a[id] = {}
-            a[id][index] = 1
-            setOrder(a)
-        }
-        else if (order[id] && order[id][index]) {
-            const change = { ...order }
-            change[id][index]++
-            setOrder(change)
-        }
-        else {
-            const change = { ...order }
-            change[id] = {}
-            change[id][index] = 1
-            setOrder(change)
-        }
-        console.log(order)
+        // quantities[id][index]++
+        const a = quantities[id]
+        a[index]++
+        setQuantities(quantities => [
+            ...quantities.slice(0, id),
+            a,
+            ...quantities.slice(id + 1)
+        ])
+        console.log(quantities)
     }
 
+    const getType = (type) => {
+        console.log(type)
+    }
+
+
     const accordionMenu = <Accordion defaultIndex={[]} allowMultiple>
-        {types.map((type) => (
-            <AccordionItem key={nanoid()}>
+        {types.map((type, index) => (
+            <AccordionItem key={nanoid()} id={type} onClick={() => getType(type) }>
                 <h2>
                     <Box margin={2}>
                         <AccordionButton>
@@ -54,7 +58,7 @@ export default function AccordionMenu({ Menu, types, order, setOrder }) {
                 </h2>
 
                 <AccordionPanel pb={4}>
-                    <Cards foodItem={Menu[type]} key={nanoid()} id={type} decrement={decrement} increment={increment} />
+                    <Cards foodItem={Menu[type]} key={nanoid()} id={type} decrement={decrement} increment={increment} typeIndex={index} values={quantities[index]} />
                 </AccordionPanel>
 
             </AccordionItem>

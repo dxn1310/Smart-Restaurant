@@ -17,18 +17,18 @@ function App() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
-  const [order, setOrder] = useState(() => {})
+  const [order, setOrder] = useState(() => [])
+
 
   return (
     <ChakraProvider>
       <Routes>
         <Route path="/" element={<Landinpage />} />
-        <Route path="/menu" element={<Menu order={order} setOrder={setOrder} />} />
-        <Route path="/cart" element={<Cart order={order} name={name} />} />
-        <Route path="/details" element={<Details name={name} setName={setName} phone={phone} setPhone={setPhone} />} />
-        <Route path="/order-confirm" element={<Order_confirm name={name} phone={phone} />} />
+        <Route path="/Menu" element={<Menu order={order} setOrder={setOrder} />} />
+        <Route path="/Cart" element={<Cart orderState={order} setOrderState={setOrder} name={name} />} />
+        <Route path="/Details" element={<Details name={name} setName={setName} phone={phone} setPhone={setPhone} />} />
+        <Route path="/Order-Confirm" element={<Order_confirm name={name} phone={phone} />} />
       </Routes>
-      {/* <Landinpage /> */}
     </ChakraProvider>
 
   );
