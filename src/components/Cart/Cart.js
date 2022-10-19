@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import '../Cart/Cart.css';
 import Item from '../Item/Item.js';
 import Bill from '../Bill/Bill';
+import Details from '../Details/Details.js';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { Button, } from '@chakra-ui/react';
-import { NavLink as Link, useParams, useLocation } from 'react-router-dom';
+import { NavLink as Link, Route, Routes } from 'react-router-dom';
+// import Details from '../Details/Details';
 
-export default function Cart({ orderState, setOrderState }) {
+export default function Cart({ orderState, setOrderState, order, name }) {
+    console.log(name);
+
     const [total_amt, setTotal_amt] = useState(0);
     const [cart, setCart] = useState([]);
 
@@ -90,9 +94,7 @@ export default function Cart({ orderState, setOrderState }) {
                                 <div className='Card-items-title'>
                                     <label className='Card-items-title-content'>Bill Details</label>
                                 </div>
-                                {/* {
-                        orderState.length === 0 ? <label>Cart empty add items</label> : <Bill total_price={total_amt} total_tax={500} total_pay={total_amt + 500} veg_non={"non"} />
-                    } */}
+
                                 <Bill total_price={total_amt} total_tax={500} total_pay={total_amt + 500} veg_non={"non"} />
                             </div>
                         </div>
@@ -103,7 +105,6 @@ export default function Cart({ orderState, setOrderState }) {
                             <Link to="/Details">
                                 <Button rightIcon={<ArrowForwardIcon />}
                                     colorScheme='teal'
-                                    // variant='outline'
                                     padding='2%'
                                     borderRadius='1rem'
                                     borderTopRightRadius='0'
@@ -116,7 +117,6 @@ export default function Cart({ orderState, setOrderState }) {
                             </Link>
                         </div>
                     </>
-
             }
         </div>
     )
